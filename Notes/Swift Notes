@@ -1,0 +1,11 @@
+Swift Notes:
+
+-exclamation points on C types states they are ready for use
+-Use swift features such as type properties rather than C based modifying 
+ functions(ex. Int.max.bigEndian vs. CFSwap...)
+-Core Audio types containing Ref are valid, Core Founation types however have
+ removed the suffix
+-Swift functions can alternatively be written as closures
+-Variables that have no initial value but whose memory will be accessed must be
+ declared with an exclamtion point(!)
+ SWIFT ANONYMOUS FUNCTIONS ARE LIKE 

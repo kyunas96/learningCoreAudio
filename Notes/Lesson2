@@ -1,0 +1,31 @@
+Lesson 2:
+
+-Treated as a graph, the audio data in a file is plotted at intervals determined
+ by the sample rate, the delta between two points is equal to the sample rate
+ -Nyquist-Shannon Sampling Theorem: if you have a function with no frequencies 
+  greater than B Hz (cycles per second), you can render it accurately by using 
+  points spaced 1/(2B) seconds apart. To reproduce a frequency, the source
+  must be sampled at twice the rate of the frequency
+-Fractional representations are preferred over integers since they can be used
+ as normalizations (values from 0.0-1.0) to represent the minimum and maximum
+ displacement of the membrane of the speaker
+-An audio files fidelity is determined by the number of bits that can be stored
+ in a sample (referred to as bit depth)
+-To get bits per second, multiply the bits per sample times the sample rate
+-Audio is often split into channels (stereo/surround sound). A collection of 
+ corresponding samples from each channel is called a frame.
+-Placing multiple channels of audio on one stream is called interleaving
+ ex. lrlrlrlrlrlrlr where l=leftChannel, r=rightChannel
+-Applying effects per channel requires noninterleaved streams
+-Compressed audio formats will combine frames into packets
+    •Linear pulse control modulation does not use packets because their data
+     need only be stored as frames
+-Accessing data in a Variable Bit Rate format requires more work since metadata
+ must be exctracted from a file to determine how to play back the frames/packets
+-Core Audio Files (CAF) make for easy interfacing with audio data
+  •converting to CAF from other file types allows for CAF's easy interface
+-The data written to an audio file is always the same
+  •Choosing a file format is a choice of compression type and audio quality
+
+Extrapolations:
+-make helper functions to deal with file format specifics

@@ -1,0 +1,39 @@
+Lesson 3:
+
+-Core Audio views audio data as streams of packets
+-AudioStreamBasicDescription's describe the packets of a stream
+
+struct AudioStreamBasicDescription{
+    Float64 mSampleRate;
+    UInt32 mFormatID;
+    UInt32 mFormatFlags;
+    UInt32 mBytesPerPacket; 
+    UInt32 mFramesPerPacket; 
+    UInt32 mBytesPerFrame; 
+    UInt32 mChannelsPerFrame;
+    UInt32 mBitsPerChannel;
+    UInt32 mReserved;
+}
+
+-AudioStreamBasicDescription's provide data for all packets in a file
+-For compressed formats, AudioStreamPacketDescriptions describe the
+ data stored in a single packet
+
+struct AudioStreamPacketDescriptions{
+    SInt64 mStartOffset;
+    UInt32 mVariableFramesInPacket;
+    UInt32 mDataByteSize;
+}
+
+-For certain compressed formats 3 things may be necessary:
+    •AudioStreamBasicDescription
+    •Magic Cookie
+    •AudioStreamPacketDescription
+-The AudioFileTypeAndFormatID is a struct that stores basic file properties.
+ When passed to AudioFileGetGlobalInfo(), the function returns information
+ about the file type and format described in the AudioFileTypeAndFormatID
+-AudioFileGetGlobalInfo() has a companion function AudioFileGetGlobalInfoSize(),
+ that gets the size of the information to be returned
+-AudioFileGetGlobalInfo can take in a variety of structs containing query info
+ but the pointer passed in as the storing place must be of a type that
+ corresponds to the query requested

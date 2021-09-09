@@ -1,0 +1,58 @@
+GO BACK OVER PREVIOUS CHAPTERS AND CREATE AND FILL OUT NOTE FILES FOR
+EACH OF THEM
+
+
+Excerpts:
+-"Core Audio is a propert-driven API"
+
+-Despite being a C library, Core Audio requires the host framework to provide it
+ specified data in the form suitable to the host language
+    •Writing the program in swift means the Swift verison of AudioToolbox will 
+     be used bridge data to the C Core Audio API
+-Always use assert after Core Audio C API calls
+    •functions, especially setup ones, must work to ensure further capabilites 
+     and actions
+    •assert checks should be replaced with catch blocks to try and remedy the
+     issue
+-C libraries require a procedural approach since much of their functionality 
+ comes from setting up its state (in the mentality of 
+    initializing the state of an audio engine)
+-Create data structures in swift that will be containers for calls to Core Audio
+-Due to the inherent time-constraints of working with audio, calls to Core Audio 
+ must be fast and efficient
+-The book does not dilineate it well but Core Audio relies on reources from 
+ AudioToolbox and CoreAudioTypes
+-Many of the setup functions and structs are in swift and are then passed into 
+ calls to Core Audio
+-When declaring uninitialized variables that will be passed to Core Audio 
+ functions, they must be declared as implicitly unwrapped with an exclamation
+ point (!)
+
+
+
+Example Extension Ideas:
+-Create the data that is to be written by Core Audio beforehand and then pass it
+ the whole chunk along with the size of the whole chunk
+-Consolidate file opening logic into a simple function
+    •stores the properties of an audio file into an 
+     AudioStreamBasicDescription
+-Create high level audio objects in Swift that are internally implemented using 
+the C Core Audio API
+     
+
+Extrapolations:
+-Objects across all OOP languages are data collections with associated functions
+-Since C has no facilites for objects, the properties of a data collection (
+    often in the form of Struct) must me stored seperately from the 
+    data collection itself (often in the form of another Struct)
+    ?How does this fit into the way the Core Audio C API is written and is
+     to be used
+    ?Despite being written in C, Core Audio functions expect certain data
+     structures written in the host language (Swift or Obj-C), can you write
+     a C data structure that matches the layout, size, and stride of their
+     Swift/Obj-c counterparts
+-Since Core Foundation (which is written in C) underpins a lot of Apple's Cocoa 
+ framework, calls to Core Audio often require the casting of Cocoa types written
+ in Swift/Obj-C to be cast as Core Foundation types
+ -C frameworks like OpenGL and Core Audio are pipelines whose properties are set
+  before data is passed into them

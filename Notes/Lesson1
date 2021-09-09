@@ -1,0 +1,39 @@
+Lesson 1:
+
+-The Core Audio API can be split into two categories:
+    1. Audio Engine APIs
+        •audio units
+        •audio Queues
+    2. Audio Helper APIs
+        •Audio File Services
+        •Audio File Stream Services
+        •Audio Converter Services
+        •Extenced Audio File Services
+        •Core MIDI
+-Since Core Audio only does a few things, its shortcomings must be compensated
+ by user-extended functionality (ex. opening a file with Core Audio, and being
+ prepared for all format types) in other words, part of mastering Core Audio is 
+ knowing where it comes up short
+-Core Audio calls often involve getting and setting the state of properties
+
+Core Audio Conventions
+-The Core Audio API is implemented in C, conforming to a procedural style of
+ programming
+
+ OSStatus AudioFileGetProperty ( 
+     AudioFileID inAudioFile, 
+     AudioFilePropertyID inPropertyID, 
+     UInt32 *ioDataSize, 
+     void *outPropertyData
+);
+
+To get the size of a property, this function is called. The *ioDataSize tells
+the function how much memory was allocated for the data to be recieved and the
+number of bytes that were written to the outPropertyData. If the outPropertyData
+is set to nil, then the data isn't written anywhere but Core Audio tallies the
+size in bytes that would have been written if there was a pointer supplied to 
+write to. This function is called twice: once to get the number of bytes that 
+must be allocated passing in nil for the data buffer, then again telling the 
+function the it has a buffer pointer allocated to the size retrieved from the
+previous call
+ 

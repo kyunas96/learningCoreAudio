@@ -1,0 +1,29 @@
+Lesson 4:
+
+-Audio Queues:
+    •Format agnostic
+    •Underlies all audio streams, serves as a means of pushing out samples
+-After an audio queue is created, callback functions are binded to it
+-PCM data formats require the most descriptors, the size and partioning of the
+ data must be described in the respective ASBD
+-Once an audio queue is created, its state is based on the ASBD it was passed
+    •when the queue is created, Core Audio infers the rest of the necessary
+     properties based on the ASBD
+    •all the properties of the audio queue, including inferred ones, can be 
+     retrieved by querying Core Audio for the state of the audio queue (data
+     is returned in the form of an ASBD, the ASBD used to initialize the state
+     of the audio queue can be reused to store the state of the audio queue
+     recieved from a query to Core Audio)
+-Having the filled out details of the audio queue in the form of an ASBD
+ gives a description of the output of the audio queue
+ •knowing what the output looks like, we can create a file that is ready to
+  receive data of this type
+-Passing a callback function to an AudioQueue requires the use of a special type
+ called AudioQueueInputCallback which is a swift type, this function appears as
+ though it is called in Swift language space rather than Core Audio's C runtime
+-Treat AudioQueueInputCallback as a sort variable/type that when referenced 
+ creates its own scope with the variables suppplied to it, to use the parameters
+ as a function would, the `in` keyword is used to denote a scope for the 
+ variables
+-Three buffers are often used for Audio Queues because one is being filled,
+ another is being read from, and the third serves as a spare
